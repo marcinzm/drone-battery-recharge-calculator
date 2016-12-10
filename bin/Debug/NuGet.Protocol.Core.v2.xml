@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.Protocol.Core.v2</name>
+    </assembly>
+    <members>
+        <member name="T:NuGet.Protocol.Core.v2.DependencyInfoResourceV2">
+            <summary>
+            A V2 dependency info gatherer.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.DependencyInfoResourceV2.ResolvePackage(NuGet.Packaging.Core.PackageIdentity,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve dependency info for a single package.
+            </summary>
+            <param name="package">package id and version</param>
+            <param name="projectFramework">project target framework. This is used for finding the dependency group</param>
+            <param name="token">cancellation token</param>
+            <returns>
+            Returns dependency info for the given package if it exists. If the package is not found null is
+            returned.
+            </returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.DependencyInfoResourceV2.ResolvePackages(System.String,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve dependency info for a single package.
+            </summary>
+            <param name="package">package id and version</param>
+            <param name="projectFramework">project target framework. This is used for finding the dependency group</param>
+            <param name="token">cancellation token</param>
+            <returns>
+            Returns dependency info for the given package if it exists. If the package is not found null is
+            returned.
+            </returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.DependencyInfoResourceV2.CreateDependencyInfo(NuGet.IPackage,NuGet.Frameworks.NuGetFramework)">
+            <summary>
+            Convert a V2 IPackage into a V3 PackageDependencyInfo
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.DownloadResourceV2.MatchPackageHash(NuGet.IPackage,System.String)">
+            <summary>
+            True if the given package matches hash
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v2.DownloadResourceV2Provider">
+            <summary>
+            Resource provider for V2 download.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v2.PackageNameWrapper">
+            <summary>
+            A simple wrapper used to pass a package identity in a legacy IPackageMetadata.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v2.PackageRepositoryResourceV2">
+            <summary>
+            Holds an IPackageRepository
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v2.PackageRepositoryResourceV2Provider">
+            <summary>
+            Creates/caches IPackageRepositories
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v2.V2PackageSource">
+            <summary>
+            Allows an IPackageRepository repository to be passed in to a SourceRepository
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v2.V2Resource">
+            <summary>
+            Represents a resource provided by a V2 server. [ Like search resource, metadata resource]
+            *TODOS: Add a trace source , Resource description ?
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v2.V2ResourceProvider">
+            <summary>
+            Partial implementation for IResourceProvider to do the common V2 specific stuff.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.ActionExecutor_RollingBack">
+            <summary>
+            Install failed. Rolling back...
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatActionExecutor_RollingBack">
+            <summary>
+            Install failed. Rolling back...
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.ActionResolver_UnsupportedAction">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatActionResolver_UnsupportedAction(System.Object)">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.ActionResolver_UnsupportedDependencyBehavior">
+            <summary>
+            Unsupported Dependency Behavior '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatActionResolver_UnsupportedDependencyBehavior(System.Object)">
+            <summary>
+            Unsupported Dependency Behavior '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.DownloadActionHandler_InvalidDownloadUrl">
+            <summary>
+            The download URL for {0} '{1}' is invalid.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatDownloadActionHandler_InvalidDownloadUrl(System.Object,System.Object)">
+            <summary>
+            The download URL for {0} '{1}' is invalid.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.DownloadActionHandler_NoDownloadUrl">
+            <summary>
+            No download URL could be found for {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatDownloadActionHandler_NoDownloadUrl(System.Object)">
+            <summary>
+            No download URL could be found for {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.NuGetRepository_CannotCreateAggregateRepo">
+            <summary>
+            Cannot create a NuGet Repository from the Aggregate Source
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatNuGetRepository_CannotCreateAggregateRepo">
+            <summary>
+            Cannot create a NuGet Repository from the Aggregate Source
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.NuGetServiceProvider_ServiceNotSupported">
+            <summary>
+            The {0} service is not supported by this object.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatNuGetServiceProvider_ServiceNotSupported(System.Object)">
+            <summary>
+            The {0} service is not supported by this object.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.PackageActionDescriptionWrapper_UnrecognizedAction">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatPackageActionDescriptionWrapper_UnrecognizedAction(System.Object)">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.ProjectInstallationTarget_ProjectIsNotTargetted">
+            <summary>
+            The project '{0}' is not one of the projects targetted by this object.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatProjectInstallationTarget_ProjectIsNotTargetted(System.Object)">
+            <summary>
+            The project '{0}' is not one of the projects targetted by this object.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.Protocol_FailedToDownloadPackage">
+            <summary>
+            An error occurred while downloading package '{0}' from source '{1}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatProtocol_FailedToDownloadPackage(System.Object,System.Object)">
+            <summary>
+            An error occurred while downloading package '{0}' from source '{1}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.Protocol_IndexMissingResourcesNode">
+            <summary>
+            Service index document is missing the 'resources' property.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatProtocol_IndexMissingResourcesNode">
+            <summary>
+            Service index document is missing the 'resources' property.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.Protocol_MissingRegistrationBase">
+            <summary>
+            The source does not have a Registration Base Url defined!
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatProtocol_MissingRegistrationBase">
+            <summary>
+            The source does not have a Registration Base Url defined!
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.Protocol_MissingSearchService">
+            <summary>
+            The source does not have a Search service!
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatProtocol_MissingSearchService">
+            <summary>
+            The source does not have a Search service!
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.Protocol_PackageMetadataError">
+            <summary>
+            An error occurred while retrieving package metadata for '{0}' from source '{1}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatProtocol_PackageMetadataError(System.Object,System.Object)">
+            <summary>
+            An error occurred while retrieving package metadata for '{0}' from source '{1}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.RequiredFeatureUnsupportedException_DefaultMessageWithFeature">
+            <summary>
+            The '{0}' installation feature was required by a package but is not supported on the current host.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatRequiredFeatureUnsupportedException_DefaultMessageWithFeature(System.Object)">
+            <summary>
+            The '{0}' installation feature was required by a package but is not supported on the current host.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v2.Strings.RequiredFeatureUnsupportedException_DefaultMessageWithoutFeature">
+            <summary>
+            The installation host does not support a feature required by this package.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v2.Strings.FormatRequiredFeatureUnsupportedException_DefaultMessageWithoutFeature">
+            <summary>
+            The installation host does not support a feature required by this package.
+            </summary>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+    </members>
+</doc>

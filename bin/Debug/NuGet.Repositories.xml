@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.Repositories</name>
+    </assembly>
+    <members>
+        <member name="M:NuGet.Repositories.NuGetv3LocalRepository.ClearCacheForIds(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Remove cached results for the given ids. This is needed
+            after installing a new package.
+            </summary>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+    </members>
+</doc>

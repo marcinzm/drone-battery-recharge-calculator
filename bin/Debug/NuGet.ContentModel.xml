@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.ContentModel</name>
+    </assembly>
+    <members>
+        <member name="T:NuGet.ContentModel.ContentPropertyDefinition">
+            <summary>
+            Defines a property that can be used in Content Model query patterns
+            <seealso cref="T:NuGet.ContentModel.PatternSet" />
+            </summary>
+        </member>
+        <member name="P:NuGet.ContentModel.ContentPropertyDefinition.CompareTest">
+            <summary>
+            Find the nearest compatible candidate.
+            </summary>
+        </member>
+        <member name="T:NuGet.ContentModel.PatternSet">
+            <summary>
+            A set of patterns that can be used to query a set of file paths for items matching a provided criteria.
+            </summary>
+        </member>
+        <member name="P:NuGet.ContentModel.PatternSet.GroupPatterns">
+            <summary>
+            Patterns used to select a group of items that matches the criteria
+            </summary>
+        </member>
+        <member name="P:NuGet.ContentModel.PatternSet.PathPatterns">
+            <summary>
+            Patterns used to select individual items that match the criteria
+            </summary>
+        </member>
+        <member name="P:NuGet.ContentModel.PatternSet.PropertyDefinitions">
+            <summary>
+            Property definitions used for matching patterns
+            </summary>
+        </member>
+        <member name="T:NuGet.ContentModel.PatternDefinition">
+            <summary>
+            A pattern that can be used to match file paths given a provided criteria.
+            </summary>
+            <remarks>
+            The pattern is defined as a sequence of literal path strings that must match exactly and property
+            references,
+            wrapped in {} characters, which are tested for compatibility with the consumer-provided criteria.
+            <seealso cref="T:NuGet.ContentModel.ContentPropertyDefinition" />
+            </remarks>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+    </members>
+</doc>

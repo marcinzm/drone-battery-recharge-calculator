@@ -1,0 +1,599 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.Protocol.Core.Types</name>
+    </assembly>
+    <members>
+        <member name="T:NuGet.Protocol.Core.Types.DownloadResourceResult">
+            <summary>
+            The result of <see cref="M:NuGet.Protocol.Core.Types.DownloadResource.#ctor"/>.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.DownloadResourceResult.PackageStream">
+            <summary>
+            Gets the package <see cref="P:NuGet.Protocol.Core.Types.DownloadResourceResult.PackageStream"/>.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.DownloadResourceResult.PackageReader">
+            <summary>
+            Gets the <see cref="T:NuGet.Packaging.PackageReaderBase"/> for the package.
+            </summary>
+            <remarks>This property can be null.</remarks>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.HttpSourceCacheContext.RootTempFolder">
+            <summary>
+            A suggested root folder to drop temporary files under, it will get cleared by the
+            code that constructs a RestoreRequest.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.INuGetResource">
+            <summary>
+            Represents a resource provided by a server endpoint (V2 or V3).
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.INuGetResourceProvider">
+            <summary>
+            INuGetResourceProviders are imported by SourceRepository. They exist as singletons which span all sources,
+            and are responsible
+            for determining if they should be used for the given source when TryCreate is called.
+            The provider determines the caching. Resources may be cached per source, but they are normally created new
+            each time
+            to allow for caching within the context they were created in.
+            Providers may retrieve other resources from the source repository and pass them to the resources they
+            create in order
+            to build on them.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.INuGetResourceProvider.TryCreate(NuGet.Protocol.Core.Types.SourceRepository,System.Threading.CancellationToken)">
+            <summary>
+            Attempts to create a resource for this source.
+            </summary>
+            <remarks>
+            The provider may return true but null for the resource if the
+            provider determines that it should not exist.
+            </remarks>
+            <param name="source">Source repository</param>
+            <returns>True if this provider handles the input source.</returns>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.INuGetResourceProvider.ResourceType">
+            <summary>
+            Resource type provided
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.INuGetResourceProvider.Name">
+            <summary>
+            Name of the provider. This is used for ordering.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.INuGetResourceProvider.Before">
+            <summary>
+            Names of providers this should be ordered BEFORE
+            Gives this instance a higher priority.
+            </summary>
+            <remarks>If provider: default is named here, this provider will be called BEFORE default</remarks>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.INuGetResourceProvider.After">
+            <summary>
+            Names of providers this should be ordered AFTER.
+            Gives this instance a lower priority.
+            </summary>
+            <remarks>If provider: default is named here, this provider will be called AFTER default</remarks>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.ISourceRepositoryProvider">
+            <summary>
+            SourceRepositoryProvider composes resource providers into source repositories.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.ISourceRepositoryProvider.GetRepositories">
+            <summary>
+            Retrieve repositories
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.ISourceRepositoryProvider.CreateRepository(NuGet.Configuration.PackageSource)">
+            <summary>
+            Create a repository for one time use.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.ISourceRepositoryProvider.PackageSourceProvider">
+            <summary>
+            Gets the package source provider
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.NuGetProtocolException">
+            <summary>
+            Base protocol exception type containing a message and optional inner exception.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.NuGetResourceProviderPositions">
+            <summary>
+            Positions to base providers on
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.Types.NuGetResourceProviderPositions.First">
+            <summary>
+            The first provider called
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.Types.NuGetResourceProviderPositions.Last">
+            <summary>
+            The last provider called
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.PackageMetadata">
+            <summary>
+            Standard Nuspec metadata
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.PackageMetadata.Title">
+            <summary>
+            The Title of the package or the Id if no title was provided.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.PackageProgressEventArgs.#ctor(NuGet.Packaging.Core.PackageIdentity,NuGet.Configuration.PackageSource,System.Double)">
+            <summary>
+            The status of a package action.
+            </summary>
+            <param name="identity">package identity</param>
+            <param name="source">repository source or null</param>
+            <param name="complete">0.0 - 1.0</param>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.PackageProgressEventArgs.Complete">
+            <summary>
+            Completion - 0.0 - 1.0
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.PackageProgressEventArgs.IsComplete">
+            <summary>
+            True at 100% completion
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.ProviderComparer">
+            <summary>
+            An imperfect sort for provider before/after
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.RemoteSourceDependencyInfo">
+            <summary>
+            A collection of package dependency groups with the content (nupkg url).
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.RemoteSourceDependencyInfo.#ctor(NuGet.Packaging.Core.PackageIdentity,System.Boolean,System.Collections.Generic.IEnumerable{NuGet.Packaging.PackageDependencyGroup},System.String)">
+            <summary>
+            DependencyInfo
+            </summary>
+            <param name="identity">package identity</param>
+            <param name="dependencyGroups">package dependency groups</param>
+            <param name="contentUri">The content uri for the dependency.</param>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.RemoteSourceDependencyInfo.Identity">
+            <summary>
+            Package identity
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.RemoteSourceDependencyInfo.Listed">
+            <summary>
+            IsListed
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.RemoteSourceDependencyInfo.DependencyGroups">
+            <summary>
+            Package dependency groups
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.RemoteSourceDependencyInfo.ContentUri">
+            <summary>
+            The content url of this resource.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.Repository.CreateProvider(System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.Types.INuGetResourceProvider})">
+            <summary>
+            Create the default source repository provider
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.Repository.CreateProvider(System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.Types.INuGetResourceProvider},System.String)">
+            <summary>
+            Find sources from nuget.config based on the root path
+            </summary>
+            <param name="rootPath">lowest folder path</param>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.Repository.CreateProvider(System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.Types.INuGetResourceProvider},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Create a source provider for the given sources
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.Repository.CreateProvider(System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.Types.INuGetResourceProvider},System.Collections.Generic.IEnumerable{NuGet.Configuration.PackageSource})">
+            <summary>
+            Create a source provider for the given sources and with the extra providers.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.Repository.CreateSource(System.Collections.Generic.IEnumerable{System.Lazy{NuGet.Protocol.Core.Types.INuGetResourceProvider}},System.String)">
+            <summary>
+            Create a SourceRepository
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.Repository.CreateSource(System.Collections.Generic.IEnumerable{System.Lazy{NuGet.Protocol.Core.Types.INuGetResourceProvider}},NuGet.Configuration.PackageSource)">
+            <summary>
+            Create a SourceRepository
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.ResourceProvider.#ctor(System.Type,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            </summary>
+            <param name="resourceType">Type this resource provider creates</param>
+            <param name="name">name used for ordering</param>
+            <param name="before">providers that this provider should have precendence over</param>
+            <param name="after">providers that this provider should be called after</param>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.SearchFilter">
+            <summary>
+            A search filter context that represents the UI settings
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SearchFilter.#ctor">
+            <summary>
+            Defaults
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SearchFilter.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean)">
+            <summary>
+            Search filter
+            </summary>
+            <param name="supportedFrameworks">filter to packages compatible with these frameworks</param>
+            <param name="includePrerelease">allow prerelease results</param>
+            <param name="includeDelisted">allow unlisted packages</param>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SearchFilter.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Search filter
+            </summary>
+            <param name="supportedFrameworks">filter to packages compatible with these frameworks</param>
+            <param name="includePrerelease">allow prerelease results</param>
+            <param name="includeDelisted">allow unlisted packages</param>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SearchFilter.SupportedFrameworks">
+            <summary>
+            Filter to only the list of packages compatible with these frameworks.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SearchFilter.IncludePrerelease">
+            <summary>
+            Include prerelease packages in search
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SearchFilter.IncludeDelisted">
+            <summary>
+            Include unlisted packages in search
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SearchFilter.PackageTypes">
+            <summary>
+            Restrict the search to certain package types.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.ServerPackageMetadata">
+            <summary>
+            Package metadata from a server feed.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.SourceCacheContext">
+            <summary>
+            Cache control settings for the V3 disk cache.
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.Types.SourceCacheContext.DefaultCacheAgeLimitList">
+            <summary>
+            Default amount of time to cache version lists.
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.Types.SourceCacheContext.DefaultCacheAgeLimitNupkg">
+            <summary>
+            Default amount of time to cache nupkgs.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourceCacheContext.NoCache">
+            <summary>
+            If set, ignore the disk cache when listing and downloading packages
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourceCacheContext.ListMaxAge">
+            <summary>
+            Package version lists from the server older than this date
+            will be fetched from the server.
+            </summary>
+            <remarks>This will be ignored if <see cref="P:NuGet.Protocol.Core.Types.SourceCacheContext.NoCache"/> is true.</remarks>
+            <remarks>If the value is null the default expiration will be used.</remarks>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourceCacheContext.NupkgMaxAge">
+            <summary>
+            Nupkgs from the server older than this date will be fetched from the server.
+            </summary>
+            <remarks>This will be ignored if <see cref="P:NuGet.Protocol.Core.Types.SourceCacheContext.NoCache"/> is true.</remarks>
+            <remarks>If the value is null the default expiration will be used.</remarks>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourceCacheContext.ListMaxAgeTimeSpan">
+            <summary>
+            Package version lists from the server older than this time span
+            will be fetched from the server.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourceCacheContext.NupkgMaxAgeTimeSpan">
+            <summary>
+            Packages from the server older than this time span
+            will be fetched from the server.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourcePackageDependencyInfo.Listed">
+            <summary>
+            True if the package is listed and shown in search.
+            </summary>
+            <remarks>This property only applies to online sources.</remarks>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourcePackageDependencyInfo.Source">
+            <summary>
+            Source repository the dependency information was retrieved from.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourcePackageDependencyInfo.DownloadUri">
+            <summary>
+            The HTTP, UNC, or local file URI to the package nupkg.
+            </summary>
+            <remarks>Optional</remarks>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourcePackageDependencyInfo.PackageHash">
+            <summary>
+            Package hash
+            </summary>
+            <remarks>Optional</remarks>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.SourceRepository">
+            <summary>
+            Represents a Server endpoint. Exposes methods to get a specific resource such as Search, Metrics service
+            and so on for the given server endpoint.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.#ctor(NuGet.Configuration.PackageSource,System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.Types.INuGetResourceProvider})">
+            <summary>
+            Source Repository
+            </summary>
+            <param name="source">source url</param>
+            <param name="providers">Resource providers</param>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.#ctor(NuGet.Configuration.PackageSource,System.Collections.Generic.IEnumerable{System.Lazy{NuGet.Protocol.Core.Types.INuGetResourceProvider}})">
+            <summary>
+            Source Repository
+            </summary>
+            <param name="source">source url</param>
+            <param name="providers">Resource providers</param>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.#ctor">
+            <summary>
+            Internal default constructor
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SourceRepository.PackageSource">
+            <summary>
+            Package source
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.GetResource``1">
+            <summary>
+            Returns a resource from the SourceRepository if it exists.
+            </summary>
+            <typeparam name="T">Expected resource type</typeparam>
+            <returns>Null if the resource does not exist</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.GetResource``1(System.Threading.CancellationToken)">
+            <summary>
+            Returns a resource from the SourceRepository if it exists.
+            </summary>
+            <typeparam name="T">Expected resource type</typeparam>
+            <returns>Null if the resource does not exist</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.GetResourceAsync``1">
+            <summary>
+            Returns a resource from the SourceRepository if it exists.
+            </summary>
+            <typeparam name="T">Expected resource type</typeparam>
+            <returns>Null if the resource does not exist</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.GetResourceAsync``1(System.Threading.CancellationToken)">
+            <summary>
+            Returns a resource from the SourceRepository if it exists.
+            </summary>
+            <typeparam name="T">Expected resource type</typeparam>
+            <returns>Null if the resource does not exist</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepository.Init(System.Collections.Generic.IEnumerable{System.Lazy{NuGet.Protocol.Core.Types.INuGetResourceProvider}})">
+            <summary>
+            Initialize provider cache
+            </summary>
+            <param name="providers"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.SourceRepositoryProvider">
+            <summary>
+            SourceRepositoryProvider is the high level source for repository objects representing package sources.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepositoryProvider.#ctor(NuGet.Configuration.IPackageSourceProvider,System.Collections.Generic.IEnumerable{System.Lazy{NuGet.Protocol.Core.Types.INuGetResourceProvider}})">
+            <summary>
+            Non-MEF constructor
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepositoryProvider.GetRepositories">
+            <summary>
+            Retrieve repositories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SourceRepositoryProvider.CreateRepository(NuGet.Configuration.PackageSource)">
+            <summary>
+            Create a repository for one time use.
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.Types.UserAgent.UserAgentString">
+            <summary>
+            To be set by NuGet Clients such as NuGet Extension for Visual Studio or nuget.exe
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.UserAgent.CreateUserAgentString(System.String)">
+            <summary>
+            Create user agent string with template of "{0}/{1} ({2})", where {0} is client name,
+            {1} is NuGetClientVersion and {2} is OSVersion. {1} and {2} are automatically computed. 
+            </summary>
+            <param name="client">Client name</param>
+            <returns></returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.UserAgent.CreateUserAgentStringForVisualStudio(System.String,System.String)">
+            <summary>
+            Create user agent string for operations on Visual Studio, with template of "{0}/{1} ({2}, {3})",
+            where {0} is client name, {1} is NuGetClientVersion, {2} is OSVersion
+            and {3} is visual studio Version and SKU. {1}, {2} are automatically computed. {3} is passed in.
+            </summary>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.UserAgent.SetUserAgent(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            Set user agent string on HttpClient.
+            </summary>
+            <param name="client">Http client</param>
+            <param name="userAgent">User agent string</param>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.DependencyInfoResource">
+            <summary>
+            Provides methods for resolving a package and its dependencies. This might change based on the new
+            dependency resolver.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.DependencyInfoResource.ResolvePackage(NuGet.Packaging.Core.PackageIdentity,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve dependency info for a single package.
+            </summary>
+            <param name="package">package id and version</param>
+            <param name="projectFramework">project target framework. This is used for finding the dependency group</param>
+            <param name="token">cancellation token</param>
+            <returns>
+            Returns dependency info for the given package if it exists. If the package is not found null is
+            returned.
+            </returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.DependencyInfoResource.ResolvePackages(System.String,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve the available packages and their dependencies.
+            </summary>
+            <remarks>Includes prerelease packages</remarks>
+            <param name="packageId">package Id to search</param>
+            <param name="projectFramework">project target framework. This is used for finding the dependency group</param>
+            <param name="token">cancellation token</param>
+            <returns>available packages and their dependencies</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.DependencyInfoResource.ResolvePackages(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve the available packages and their dependencies.
+            </summary>
+            <remarks>Includes prerelease packages</remarks>
+            <param name="packageId">package Id to search</param>
+            <param name="token">cancellation token</param>
+            <returns>available packages and their dependencies</returns>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.DownloadResource">
+            <summary>
+            Finds the download url of a nupkg
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.HttpHandlerResource">
+            <summary>
+            An HttpClient configured for the package source
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.HttpHandlerResource.ClientHandler">
+            <summary>
+            HttpClientHandler used for credential support.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.HttpHandlerResource.MessageHandler">
+            <summary>
+            Message handler containing the ClientHandler.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.MetadataResource">
+            <summary>
+            Basic metadata
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.MetadataResource.GetVersions(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get all versions of a package
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.MetadataResource.GetVersions(System.String,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Get all versions of a package
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.MetadataResource.Exists(NuGet.Packaging.Core.PackageIdentity,System.Threading.CancellationToken)">
+            <summary>
+            True if the package exists in the source
+            Includes unlisted.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.MetadataResource.Exists(NuGet.Packaging.Core.PackageIdentity,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            True if the package exists in the source
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.SearchLatestResource">
+            <summary>
+            Retrieves the latest package metadata from search. This differs from SearchLatestResource in that
+            it does not return all versions.
+            </summary>
+            <remarks>Equivalent to the legacy V2 search</remarks>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SearchLatestResource.Search(System.String,NuGet.Protocol.Core.Types.SearchFilter,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves search results
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.SimpleSearchMetadata">
+            <summary>
+            A basic search result needed for the command line
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SimpleSearchMetadata.Identity">
+            <summary>
+            Package id and version
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SimpleSearchMetadata.Description">
+            <summary>
+            Package description
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.SimpleSearchMetadata.AllVersions">
+            <summary>
+            All versions of the package
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.Types.SimpleSearchResource">
+            <summary>
+            Returns basic search results from the source
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.SimpleSearchResource.Search(System.String,NuGet.Protocol.Core.Types.SearchFilter,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Returns search entries
+            </summary>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+    </members>
+</doc>

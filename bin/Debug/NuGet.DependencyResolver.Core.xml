@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.DependencyResolver.Core</name>
+    </assembly>
+    <members>
+        <member name="T:NuGet.DependencyResolver.LibraryRangeCacheKey">
+            <summary>
+            Helper class to hold a library range and framework.
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.LibraryRangeCacheKey.Framework">
+            <summary>
+            Target framework
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.LibraryRangeCacheKey.LibraryRange">
+            <summary>
+            Library range information.
+            </summary>
+        </member>
+        <member name="M:NuGet.DependencyResolver.PackagingUtility.GetLibraryDependencyFromNuspec(NuGet.Packaging.Core.PackageDependency)">
+            <summary>
+            Convert a nuspec dependency to a library dependency.
+            </summary>
+        </member>
+        <member name="T:NuGet.DependencyResolver.GraphEdge`1">
+            <summary>
+            GraphEdge holds a reference to the parent node, the incoming edge to the parent, and
+            the out going edge to the current position of the walk.
+            
+            Root -> OuterEdge -> Node -> Edge -> (Current Node)
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.GraphEdge`1.OuterEdge">
+            <summary>
+            Incoming edge to <see cref="P:NuGet.DependencyResolver.GraphEdge`1.Item"/>.
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.GraphEdge`1.Item">
+            <summary>
+            Graph node between <see cref="P:NuGet.DependencyResolver.GraphEdge`1.OuterEdge"/> and <see cref="P:NuGet.DependencyResolver.GraphEdge`1.Edge"/>.
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.GraphEdge`1.Edge">
+            <summary>
+            Outgoing edge from <see cref="P:NuGet.DependencyResolver.GraphEdge`1.Item"/>.
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.Core.Strings.Error_FailedToResolveConflicts">
+            <summary>
+            Unable to find a version of package '{0}' that is compatible with version constraint '{1}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.DependencyResolver.Core.Strings.FormatError_FailedToResolveConflicts(System.Object,System.Object)">
+            <summary>
+            Unable to find a version of package '{0}' that is compatible with version constraint '{1}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.RemoteWalkContext.FindLibraryEntryCache">
+            <summary>
+            Library entry cache.
+            </summary>
+        </member>
+        <member name="P:NuGet.DependencyResolver.RemoteWalkContext.PackageFileCache">
+            <summary>
+            Files contained in a package.
+            </summary>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+    </members>
+</doc>

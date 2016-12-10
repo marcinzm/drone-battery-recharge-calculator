@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.Protocol.VisualStudio</name>
+    </assembly>
+    <members>
+        <member name="M:NuGet.Protocol.VisualStudio.FactoryExtensionsVS.GetVisualStudio(NuGet.Protocol.Core.Types.Repository.ProviderFactory)">
+            <summary>
+            Core V2 + Core V3 + VS
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.JObjectExtensions.GetString(Newtonsoft.Json.Linq.JObject,System.String)">
+            <summary>
+            Returns a field value or the empty string. Arrays will become comma delimited strings.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UIMetadataResource.GetMetadata(System.String,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Returns all versions of a package
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UIMetadataResource.GetMetadata(NuGet.Packaging.Core.PackageIdentity,System.Threading.CancellationToken)">
+            <summary>
+            Returns Metadata for a single package
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UIMetadataResource.GetMetadata(System.Collections.Generic.IEnumerable{NuGet.Packaging.Core.PackageIdentity},System.Threading.CancellationToken)">
+            <summary>
+            Returns metadata for all packages
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UIMetadataResourceV3.GetField(Newtonsoft.Json.Linq.JObject,System.String)">
+            <summary>
+            Returns a field value or the empty string. Arrays will become comma delimited strings.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.VisualStudio.UISearchResource">
+            <summary>
+            Retrieves search metadata in the from used by the VS UI
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UISearchResource.Search(System.String,NuGet.Protocol.Core.Types.SearchFilter,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves search results
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.VisualStudio.UnzippedPackageResource">
+            <summary>
+            Retrieves unzipped packages from a folder.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UnzippedPackageResource.HasNupkg(NuGet.Packaging.Core.PackageIdentity)">
+            <summary>
+            True if the nupkg exists for the unzipped resource
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UnzippedPackageResource.GetNupkgFile(NuGet.Packaging.Core.PackageIdentity)">
+            <summary>
+            Returns the nupkg path
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UnzippedPackageResource.GetPackageRoot(NuGet.Packaging.Core.PackageIdentity)">
+            <summary>
+            Returns the root directory of the unzipped package
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.UnzippedPackageResource.GetPackages">
+            <summary>
+            Returns all package identities
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.VisualStudio.ExtensibleSourceRepositoryProvider">
+            <summary>
+            SourceRepositoryProvider is the high level source for repository objects representing package sources.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.ExtensibleSourceRepositoryProvider.#ctor">
+            <summary>
+            Public parameter-less constructor for SourceRepositoryProvider
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.ExtensibleSourceRepositoryProvider.#ctor(System.Collections.Generic.IEnumerable{System.Lazy{NuGet.Protocol.Core.Types.INuGetResourceProvider}},NuGet.Configuration.ISettings)">
+            <summary>
+            Public importing constructor for SourceRepositoryProvider
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.ExtensibleSourceRepositoryProvider.#ctor(NuGet.Configuration.IPackageSourceProvider,System.Collections.Generic.IEnumerable{System.Lazy{NuGet.Protocol.Core.Types.INuGetResourceProvider}})">
+            <summary>
+            Non-MEF constructor
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.ExtensibleSourceRepositoryProvider.GetRepositories">
+            <summary>
+            Retrieve repositories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.ExtensibleSourceRepositoryProvider.CreateRepository(NuGet.Configuration.PackageSource)">
+            <summary>
+            Create a repository for one time use.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.VisualStudio.PSSearchMetadata">
+            <summary>
+            Model for search results shown by PowerShell console search.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.VisualStudio.UIPackageMetadata">
+            <summary>
+            Full package details as used by the UI
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.UIPackageMetadata.Identity">
+            <summary>
+            Package Id and Version
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.UIPackageMetadata.Title">
+            <summary>
+            The Title of the package or the Id if no title was provided.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.VisualStudio.UISearchMetadata">
+            <summary>
+            Model for Search results displayed by Visual Studio Package Manager dialog UI.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.ActionExecutor_RollingBack">
+            <summary>
+            Install failed. Rolling back...
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatActionExecutor_RollingBack">
+            <summary>
+            Install failed. Rolling back...
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.ActionResolver_UnsupportedAction">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatActionResolver_UnsupportedAction(System.Object)">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.ActionResolver_UnsupportedDependencyBehavior">
+            <summary>
+            Unsupported Dependency Behavior '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatActionResolver_UnsupportedDependencyBehavior(System.Object)">
+            <summary>
+            Unsupported Dependency Behavior '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.DownloadActionHandler_InvalidDownloadUrl">
+            <summary>
+            The download URL for {0} '{1}' is invalid.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatDownloadActionHandler_InvalidDownloadUrl(System.Object,System.Object)">
+            <summary>
+            The download URL for {0} '{1}' is invalid.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.DownloadActionHandler_NoDownloadUrl">
+            <summary>
+            No download URL could be found for {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatDownloadActionHandler_NoDownloadUrl(System.Object)">
+            <summary>
+            No download URL could be found for {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.NuGetRepository_CannotCreateAggregateRepo">
+            <summary>
+            Cannot create a NuGet Repository from the Aggregate Source
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatNuGetRepository_CannotCreateAggregateRepo">
+            <summary>
+            Cannot create a NuGet Repository from the Aggregate Source
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.NuGetServiceProvider_ServiceNotSupported">
+            <summary>
+            The {0} service is not supported by this object.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatNuGetServiceProvider_ServiceNotSupported(System.Object)">
+            <summary>
+            The {0} service is not supported by this object.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.PackageActionDescriptionWrapper_UnrecognizedAction">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatPackageActionDescriptionWrapper_UnrecognizedAction(System.Object)">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.ProjectInstallationTarget_ProjectIsNotTargetted">
+            <summary>
+            The project '{0}' is not one of the projects targetted by this object.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatProjectInstallationTarget_ProjectIsNotTargetted(System.Object)">
+            <summary>
+            The project '{0}' is not one of the projects targetted by this object.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.Protocol_IndexMissingResourcesNode">
+            <summary>
+            Service index document is missing the 'resources' property.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatProtocol_IndexMissingResourcesNode">
+            <summary>
+            Service index document is missing the 'resources' property.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.Protocol_MissingRegistrationBase">
+            <summary>
+            The source does not have a Registration Base Url defined!
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatProtocol_MissingRegistrationBase">
+            <summary>
+            The source does not have a Registration Base Url defined!
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.Protocol_MissingSearchService">
+            <summary>
+            The source does not have a Search service!
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatProtocol_MissingSearchService">
+            <summary>
+            The source does not have a Search service!
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.RequiredFeatureUnsupportedException_DefaultMessageWithFeature">
+            <summary>
+            The '{0}' installation feature was required by a package but is not supported on the current host.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatRequiredFeatureUnsupportedException_DefaultMessageWithFeature(System.Object)">
+            <summary>
+            The '{0}' installation feature was required by a package but is not supported on the current host.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.RequiredFeatureUnsupportedException_DefaultMessageWithoutFeature">
+            <summary>
+            The installation host does not support a feature required by this package.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatRequiredFeatureUnsupportedException_DefaultMessageWithoutFeature">
+            <summary>
+            The installation host does not support a feature required by this package.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.Protocol_Search_LocalSourceNotFound">
+            <summary>
+            The path '{0}' for the selected source could not be resolved.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.FormatProtocol_Search_LocalSourceNotFound(System.Object)">
+            <summary>
+            The path '{0}' for the selected source could not be resolved.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.v2sourceDescription">
+            <summary>
+            API v2 (legacy)
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.Formatv2sourceDescription">
+            <summary>
+            API v2 (legacy)
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.VisualStudio.Strings.v3sourceDescription">
+            <summary>
+            API v3
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.VisualStudio.Strings.Formatv3sourceDescription">
+            <summary>
+            API v3
+            </summary>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+    </members>
+</doc>
