@@ -1,1 +1,57 @@
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="pl" target-language="en" original="DRONEBATTERYLOADCALCULATOR/FORM1.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1795.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="DRONEBATTERYLOADCALCULATOR/FORM1.RESX" datatype="resx" />
+    </body>
+  </file>
+  <file datatype="xml" source-language="pl" target-language="en" original="DRONEBATTERYLOADCALCULATOR/PROPERTIES/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1795.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="DRONEBATTERYLOADCALCULATOR/PROPERTIES/RESOURCES.RESX" datatype="resx">
+        <trans-unit id="wprowadz_tekst1" translate="yes" xml:space="preserve">
+          <source>Wprowadź liczbę, będącą udziałem procentowym baterii do naładowania</source>
+          <target state="translated">Enter a number that is percentage rate of your battery to recharge</target>
+        </trans-unit>
+        <trans-unit id="musisz_ladowac1" translate="yes" xml:space="preserve">
+          <source> % musisz ładować przez </source>
+          <target state="translated">% you have to charge by </target>
+        </trans-unit>
+        <trans-unit id="podaj_procent_do_naladowania" translate="yes" xml:space="preserve">
+          <source>Podaj % do naładowania:</source>
+          <target state="translated">Enter % rate to recharge</target>
+        </trans-unit>
+        <trans-unit id="sek" translate="yes" xml:space="preserve">
+          <source>sek</source>
+          <target state="translated">sec</target>
+        </trans-unit>
+        <trans-unit id="wprowadz_liczbe1" translate="yes" xml:space="preserve">
+          <source>Wprowadź wartość będącą liczbą</source>
+          <target state="translated">Enter a value that is a number</target>
+        </trans-unit>
+        <trans-unit id="button1_text" translate="yes" xml:space="preserve">
+          <source>Oblicz czas ładowania akumulatora Twojego drona</source>
+          <target state="translated">Calculate your drone battery recharging time</target>
+        </trans-unit>
+        <trans-unit id="button2_text" translate="yes" xml:space="preserve">
+          <source>Rozpocznij ładowanie</source>
+          <target state="translated">Start recharging</target>
+        </trans-unit>
+        <trans-unit id="combo_box1_ustawienia_reczne" translate="yes" xml:space="preserve">
+          <source>ustawienia ręczne</source>
+          <target state="translated">manual settings</target>
+        </trans-unit>
+        <trans-unit id="dron" translate="yes" xml:space="preserve">
+          <source>Dron:</source>
+          <target state="needs-review-translation">Drone:</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
