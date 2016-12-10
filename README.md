@@ -6,7 +6,8 @@
 
 1) Copyright:
 You can use for commercial and uncommercial use.
-If you like the software and makes it helpful for you, please donate.
+If you like the software and makes it helpful for you, please donate via PayPal (email: marcinzmyslowski@poczta.onet.pl) or 
+visit my web page: http://wynajmijdronaod.zmyslowski.pl/programy - there is information how to donate..
 
 2) Goal:
 Drone Battery Recharge Calculator is the software which would be helpful
@@ -29,7 +30,7 @@ for this drone is the most accurate. The rest recharging times are my calculatio
 
 
 
-IF THIS SOFTWARE MAKES YOUR WORK AND ENJOY HELPFUL PLEASE DONATE to my mail: marcinzmyslowski@poczta.onet.pl
+IF THIS SOFTWARE MAKES YOUR WORK AND ENJOY HELPFUL PLEASE DONATE via PayPal to my mail: marcinzmyslowski@poczta.onet.pl or visit my web page: http://wynajmijdronaod.zmyslowski.pl/programy - there is information how to donate.
 
 if you want to contact with me, email me, I will reply for sure.
 
