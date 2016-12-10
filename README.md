@@ -17,10 +17,14 @@ and store them in 40% charge capacity. This is right approach for storage of dro
 3) Installation:
 
 a) download the DroneBatteryLoadCalculator folder with all files and subfolders from github
+
 b) Please create a folder DroneBatteryLoadCalculator in i.e. c:\ or d:\ drive. Cope the installation files into that folder
+
 c) add the this c:\DroneBatteryLoadCalculator\bin\Release\ folder to Windows environment to make the application run globally on every place of your drive
-d) If you use Total Commander please type gl.exe on any drive and any folder you currently are.
+
+d) If you use Total Commander please type gl.exe on any drive and any folder you currently are,
 the software should run, if doesn`t run please install the latest Windows .NET framework package from microsoft.com web page.
+
 e) You can change the language settings from Polski (Polish) to English.
 
 2) Bugs
