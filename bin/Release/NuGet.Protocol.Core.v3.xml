@@ -1,0 +1,813 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.Protocol.Core.v3</name>
+    </assembly>
+    <members>
+        <member name="T:NuGet.Protocol.Core.v3.DependencyInfoResourceV3">
+            <summary>
+            Retrieves all packages and dependencies from a V3 source.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfoResourceV3.#ctor(System.Net.Http.HttpClient,NuGet.Protocol.Core.v3.RegistrationResourceV3,NuGet.Protocol.Core.Types.SourceRepository)">
+            <summary>
+            Dependency info resource
+            </summary>
+            <param name="client">Http client</param>
+            <param name="regResource">Registration blob resource</param>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfoResourceV3.ResolvePackage(NuGet.Packaging.Core.PackageIdentity,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve dependency info for a single package.
+            </summary>
+            <param name="package">package id and version</param>
+            <param name="projectFramework">project target framework. This is used for finding the dependency group</param>
+            <param name="token">cancellation token</param>
+            <returns>
+            Returns dependency info for the given package if it exists. If the package is not found null is
+            returned.
+            </returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfoResourceV3.ResolvePackages(System.String,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve the available packages and their dependencies.
+            </summary>
+            <remarks>Includes prerelease packages</remarks>
+            <param name="packageId">package Id to search</param>
+            <param name="projectFramework">project target framework. This is used for finding the dependency group</param>
+            <param name="token">cancellation token</param>
+            <returns>available packages and their dependencies</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfoResourceV3.ResolvePackages(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve the available packages and their dependencies.
+            </summary>
+            <remarks>Includes prerelease packages</remarks>
+            <param name="packageId">package Id to search</param>
+            <param name="projectFramework">project target framework. This is used for finding the dependency group</param>
+            <param name="token">cancellation token</param>
+            <returns>available packages and their dependencies</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfoResourceV3.GetPackagesFromRegistration(NuGet.Protocol.Core.v3.DependencyInfo.RegistrationInfo,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve dependency info from a registration blob
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.DependencyInfoResourceV3Provider">
+            <summary>
+            Retrieves all dependency info for the package resolver.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.DownloadResourceV3">
+            <summary>
+            Provides the download metatdata for a given package from a V3 server endpoint.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DownloadResourceV3.#ctor(System.Net.Http.HttpClient,NuGet.Protocol.Core.v3.RegistrationResourceV3)">
+            <summary>
+            Download packages using the download url found in the registration resource.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DownloadResourceV3.#ctor(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            Download packages using the flat container resource.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DownloadResourceV3.GetDownloadUrl(NuGet.Packaging.Core.PackageIdentity,System.Threading.CancellationToken)">
+            <summary>
+            Get the download url of the package.
+            1. If the identity is a SourcePackageDependencyInfo the SourcePackageDependencyInfo.DownloadUri is used.
+            2. A url will be constructed for the flat container location if the source has that resource.
+            3. The download url will be found in the registration blob as a fallback.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.HttpHandlerResourceV3">
+            <summary>
+            Resource wrapper for an HttpClient
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.HttpHandlerResourceV3.PromptForProxyCredentials">
+            <summary>
+            Function to be called to prompt user for proxy credentials.
+            </summary> 
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.HttpHandlerResourceV3.ProxyPassed">
+            <summary>
+            Action to be called when the proxy is successfully used to make a request.
+            </summary> 
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.HttpHandlerResourceV3.PromptForCredentials">
+            <summary>
+            Gets or sets a delegate to be invoked to prompt user for authenticated feed credentials.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.HttpHandlerResourceV3.CredentialsSuccessfullyUsed">
+            <summary>
+            Gets or sets a delegate that is to be invoked when authenticated feed credentials are successfully
+            used.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.MetadataResourceV3">
+            <summary>
+            Returns the full package metadata
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.MetadataResourceV3.GetLatestVersions(System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Find the latest version of the package
+            </summary>
+            <param name="includePrerelease">include versions with prerelease labels</param>
+            <param name="includeUnlisted">not implemented yet</param>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.PackageMetadataParser.GetField(Newtonsoft.Json.Linq.JObject,System.String)">
+            <summary>
+            Returns a field value or the empty string. Arrays will become comma delimited strings.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.RegistrationResourceV3">
+            <summary>
+            Registration blob reader
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.RegistrationResourceV3.BaseUri">
+            <summary>
+            Gets the <see cref="T:System.Uri"/> for the source backing this resource.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RegistrationResourceV3.GetUri(System.String)">
+            <summary>
+            Constructs the URI of a registration index blob
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RegistrationResourceV3.GetUri(System.String,NuGet.Versioning.NuGetVersion)">
+            <summary>
+            Constructs the URI of a registration blob with a specific version
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RegistrationResourceV3.GetUri(NuGet.Packaging.Core.PackageIdentity)">
+            <summary>
+            Constructs the URI of a registration blob with a specific version
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RegistrationResourceV3.GetPackageMetadata(NuGet.Packaging.Core.PackageIdentity,System.Threading.CancellationToken)">
+            <summary>
+            Returns the registration blob for the id and version
+            </summary>
+            <remarks>The inlined entries are potentially going away soon</remarks>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RegistrationResourceV3.GetPackageMetadata(System.String,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Returns inlined catalog entry items for each registration blob
+            </summary>
+            <remarks>The inlined entries are potentially going away soon</remarks>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RegistrationResourceV3.GetPackageMetadata(System.String,NuGet.Versioning.VersionRange,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Returns inlined catalog entry items for each registration blob
+            </summary>
+            <remarks>The inlined entries are potentially going away soon</remarks>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RegistrationResourceV3.GetPackageEntries(System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Returns all index entries of type Package within the given range and filters
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.ReportAbuseResourceV3.GetReportAbuseUrl(System.String,NuGet.Versioning.NuGetVersion)">
+            <summary>
+            Gets a URL for reporting package abuse. The URL will not be verified to exist.
+            </summary>
+            <param name="id">The package id (natural casing)</param>
+            <param name="version">The package version</param>
+            <returns>The first URL from the resource, with the URI template applied.</returns>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.ServiceIndexResourceV3">
+            <summary>
+            Stores/caches a service index json file.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.ServiceIndexResourceV3.Index">
+            <summary>
+            Raw json
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.ServiceIndexResourceV3.RequestTime">
+            <summary>
+            Time the index was requested
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.ServiceIndexResourceV3.Item(System.String)">
+            <summary>
+            A list of endpoints for a service type
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.ServiceIndexResourceV3Provider">
+            <summary>
+            Retrieves and caches service index.json files
+            ServiceIndexResourceV3 stores the json, all work is done in the provider
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.ServiceIndexResourceV3Provider.MaxCacheDuration">
+            <summary>
+            Maximum amount of time to store index.json
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.SimpleSearchResourceV3">
+            <summary>
+            Simple search results for V3
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.SimpleSearchResourceV3.Search(System.String,NuGet.Protocol.Core.Types.SearchFilter,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Basic search
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.SimpleSearchResourceV3Provider">
+            <summary>
+            V3 Simple search resource aimed at command line searches
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.SimpleSearchResourceV3Provider.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.CompactEntityReader">
+            <summary>
+            CompactEntityReader makes an attempt at understanding the expanded entity and RDF concepts from the
+            compacted form
+            for scenarios where the graph is not available, or simple answers are needed.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.CompactEntityReader.#ctor(Newtonsoft.Json.Linq.JObject,System.Uri,System.Uri)">
+            <summary>
+            Creates a new compact entity reader.
+            </summary>
+            <param name="entityJson">The JObject of the entity. Required.</param>
+            <param name="entityUri">Optional, if the uri is already known it can be provided to save parsing it.</param>
+            <param name="pageUri">Optional, if the uri is already known it can be provided to save parsing it.</param>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.CompactEntityReader.IsFromPage">
+            <summary>
+            True if the entity id and the root id match, meaning this entity is complete.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.CompactEntityReader.HasPredicates(System.Collections.Generic.IEnumerable{System.Uri})">
+            <summary>
+            Shortens the uris against the vocab and checks HasProperties
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.CompactEntityReader.HasProperties(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            True if the entity has all of these properties. This is assuming the proper vocabs are used.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.CompactEntityReader.PageUri">
+            <summary>
+            @id of the page root
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.CompactEntityReader.EntityUri">
+            <summary>
+            @id of the entity
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.CompactEntityReader.Vocab">
+            <summary>
+            @vocab used for this entity.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.DataCacheOptions">
+            <summary>
+            Options used for DataClient http requests.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.DataCacheOptions.UseFileCache">
+            <summary>
+            If set the file will be stored in the file cache.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.DataCacheOptions.MaxCacheLife">
+            <summary>
+            Maximum allowed file age. If the file is older than the limit it will be refetched.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.DataCacheOptions.Refresh">
+            <summary>
+            If set pages will be requested and updated in the cache
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.DataClient">
+            <summary>
+            A NuGet http client with support for authentication, proxies, and caching.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.#ctor(NuGet.Protocol.Core.Types.HttpHandlerResource)">
+            <summary>
+            Use a HttpHandlerResource containing a message handler.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.#ctor(System.Net.Http.HttpMessageHandler)">
+            <summary>
+            Raw constructor that allows full overriding of all caching and default DataClient behavior.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.#ctor">
+            <summary>
+            DataClient with the default options and caching support
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.#ctor(System.Net.Http.HttpClientHandler,System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.v3.INuGetMessageHandlerProvider})">
+            <summary>
+            Internal constructor for building the final handler
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.DataClient.DefaultHandler">
+            <summary>
+            Default caching handler used by the data client
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.CreateHandler(System.Net.Http.HttpClientHandler)">
+            <summary>
+            Default caching handler used by the data client
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.AssembleHandlers(System.Net.Http.HttpClientHandler,System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.v3.INuGetMessageHandlerProvider})">
+            <summary>
+            Chain the handlers together
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.GetJObject(System.Uri)">
+            <summary>
+            Retrieve a json file
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.GetJObjectAsync(System.Uri)">
+            <summary>
+            Retrieve a json file
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.DataClient.GetJObjectAsync(System.Uri,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a json file with caching
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.INuGetRequestModifier">
+            <summary>
+            Request modifiers add auth and proxy settings to outgoing requests.
+            </summary>
+            <remarks>
+            Modifiers should retrieve their settings and a list of package sources at creation time.
+            They should NOT make calls to the request endpoint to determine if they should handle it.
+            </remarks>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.INuGetRequestModifier.Modify(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Provides an opportunity to modify a request before it is sent.
+            </summary>
+            <param name="request">Request</param>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.RequestModifierHandler">
+            <summary>
+            Auth and proxy modifiers
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Data.RetryHandler.MaxTries">
+            <summary>
+            Total number of requests allowed for a single call.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.Utility.IsValidJsonLd(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            True if this object has @context
+            </summary>
+            <param name="compacted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.Utility.IsEntityFromPage(Newtonsoft.Json.Linq.JToken,System.Uri)">
+            <summary>
+            Check if the entity url matches the root url
+            </summary>
+            <param name="token">entity token</param>
+            <param name="entityUri">Optional field, if this is given the method will not try to parse it out again.</param>
+            <returns>true if the root uri is the base of the entity uri</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.Utility.IsRootUri(System.Uri)">
+            <summary>
+            True if the uri does not have a #
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.Utility.CompareRootUris(System.Uri,System.Uri)">
+            <summary>
+            Checks if the uris match or differ only in the # part.
+            If either are null this returns false.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.CacheEnabledRequestMessage">
+            <summary>
+            HttpRequestMessage wrapper that holds additional flags for caching
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Data.CacheEnabledRequestMessage.#ctor(System.Uri,NuGet.Protocol.Core.v3.Data.DataCacheOptions)">
+            <summary>
+            Request wrapper
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.CacheHandler">
+            <summary>
+            Caches responses based on the request's DataCacheOptions
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.CacheResponse">
+            <summary>
+            Simulated response from the cache.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.Data.UriLock">
+            <summary>
+            Session wide URI lock
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.INuGetMessageHandlerProvider">
+            <summary>
+            Extension point for providing Http Message handlers to do proxy and authentication
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfo.ResolverMetadataClient.GetDependencies(System.Net.Http.HttpClient,System.Uri,NuGet.Versioning.VersionRange,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve the <see cref="T:NuGet.Protocol.Core.Types.RemoteSourceDependencyInfo" /> for a registration.
+            </summary>
+            <returns>Returns an empty sequence if the package does not exist.</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfo.ResolverMetadataClient.ProcessPackageVersion(Newtonsoft.Json.Linq.JObject,NuGet.Versioning.NuGetVersion,System.Boolean)">
+            <summary>
+            Process an individual package version entry
+            </summary>
+            <param name="packageObj"></param>
+            <param name="version"></param>
+            <param name="includePrerelease"></param>
+            <returns>Returns the RemoteSourceDependencyInfo object corresponding to this package version</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfo.ResolverMetadataClient.GetRegistrationInfo(System.Net.Http.HttpClient,System.Uri,NuGet.Versioning.VersionRange,NuGet.Frameworks.NuGetFramework,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a registration blob
+            </summary>
+            <returns>Returns Null if the package does not exist</returns>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.DependencyInfo.ResolverMetadataClient.GetFramework(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Retrieve the target framework from a dependency group obj
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.LocalRepositories.LocalV2FindPackageByIdResourceProvider">
+            <summary>
+            A v2-style package repository that has nupkgs at the root.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.LocalRepositories.LocalV3FindPackageByIdResourceProvider">
+            <summary>
+            A v3-style package repository that has expanded packages.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.ActionExecutor_RollingBack">
+            <summary>
+            Install failed. Rolling back...
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatActionExecutor_RollingBack">
+            <summary>
+            Install failed. Rolling back...
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.ActionResolver_UnsupportedAction">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatActionResolver_UnsupportedAction(System.Object)">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.ActionResolver_UnsupportedDependencyBehavior">
+            <summary>
+            Unsupported Dependency Behavior '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatActionResolver_UnsupportedDependencyBehavior(System.Object)">
+            <summary>
+            Unsupported Dependency Behavior '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.ArgumentCannotBeNullOrEmpty">
+            <summary>
+            Argument cannot be null or empty.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatArgumentCannotBeNullOrEmpty">
+            <summary>
+            Argument cannot be null or empty.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.DownloadActionHandler_InvalidDownloadUrl">
+            <summary>
+            The download URL for {0} '{1}' is invalid.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatDownloadActionHandler_InvalidDownloadUrl(System.Object,System.Object)">
+            <summary>
+            The download URL for {0} '{1}' is invalid.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.DownloadActionHandler_NoDownloadUrl">
+            <summary>
+            No download URL could be found for {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatDownloadActionHandler_NoDownloadUrl(System.Object)">
+            <summary>
+            No download URL could be found for {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Log_FailedToDownloadPackage">
+            <summary>
+            Failed to download package from '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatLog_FailedToDownloadPackage(System.Object)">
+            <summary>
+            Failed to download package from '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Log_FailedToRetrievePackage">
+            <summary>
+            Failed to retrieve information from remote source '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatLog_FailedToRetrievePackage(System.Object)">
+            <summary>
+            Failed to retrieve information from remote source '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Log_FileIsCorrupt">
+            <summary>
+            The file '{0}' is corrupt.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatLog_FileIsCorrupt(System.Object)">
+            <summary>
+            The file '{0}' is corrupt.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Log_RetryingFindPackagesById">
+            <summary>
+            Retrying '{0}' for source {1}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatLog_RetryingFindPackagesById(System.Object,System.Object)">
+            <summary>
+            Retrying '{0}' for source {1}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.NuGetRepository_CannotCreateAggregateRepo">
+            <summary>
+            Cannot create a NuGet Repository from the Aggregate Source
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatNuGetRepository_CannotCreateAggregateRepo">
+            <summary>
+            Cannot create a NuGet Repository from the Aggregate Source
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.NuGetServiceProvider_ServiceNotSupported">
+            <summary>
+            The {0} service is not supported by this object.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatNuGetServiceProvider_ServiceNotSupported(System.Object)">
+            <summary>
+            The {0} service is not supported by this object.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.OneOrMoreUrisMustBeSpecified">
+            <summary>
+            One or more URIs must be specified.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatOneOrMoreUrisMustBeSpecified">
+            <summary>
+            One or more URIs must be specified.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.PackageActionDescriptionWrapper_UnrecognizedAction">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatPackageActionDescriptionWrapper_UnrecognizedAction(System.Object)">
+            <summary>
+            Unrecognized Package Action '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.ProjectInstallationTarget_ProjectIsNotTargetted">
+            <summary>
+            The project '{0}' is not one of the projects targetted by this object.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProjectInstallationTarget_ProjectIsNotTargetted(System.Object)">
+            <summary>
+            The project '{0}' is not one of the projects targetted by this object.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_BadSource">
+            <summary>
+            Failed to retrieve metadata from source '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_BadSource(System.Object)">
+            <summary>
+            Failed to retrieve metadata from source '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_IndexMissingResourcesNode">
+            <summary>
+            Service index document is missing the 'resources' property.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_IndexMissingResourcesNode">
+            <summary>
+            Service index document is missing the 'resources' property.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_MalformedMetadataError">
+            <summary>
+            Metadata could not be loaded from the source '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_MalformedMetadataError(System.Object)">
+            <summary>
+            Metadata could not be loaded from the source '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_MissingRegistrationBase">
+            <summary>
+            The source does not have a Registration Base Url defined!
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_MissingRegistrationBase">
+            <summary>
+            The source does not have a Registration Base Url defined!
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_MissingSearchService">
+            <summary>
+            The source does not have a Search service!
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_MissingSearchService">
+            <summary>
+            The source does not have a Search service!
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_MissingVersion">
+            <summary>
+            The source does not have the 'version' property.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_MissingVersion">
+            <summary>
+            The source does not have the 'version' property.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_PackageMetadataError">
+            <summary>
+            An error occurred while retrieving package metadata for '{0}' from source '{1}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_PackageMetadataError(System.Object,System.Object)">
+            <summary>
+            An error occurred while retrieving package metadata for '{0}' from source '{1}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.Protocol_UnsupportedVersion">
+            <summary>
+            The source version is not supported: '{0}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatProtocol_UnsupportedVersion(System.Object)">
+            <summary>
+            The source version is not supported: '{0}'.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.RequiredFeatureUnsupportedException_DefaultMessageWithFeature">
+            <summary>
+            The '{0}' installation feature was required by a package but is not supported on the current host.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatRequiredFeatureUnsupportedException_DefaultMessageWithFeature(System.Object)">
+            <summary>
+            The '{0}' installation feature was required by a package but is not supported on the current host.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.v3.Strings.RequiredFeatureUnsupportedException_DefaultMessageWithoutFeature">
+            <summary>
+            The installation host does not support a feature required by this package.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.Strings.FormatRequiredFeatureUnsupportedException_DefaultMessageWithoutFeature">
+            <summary>
+            The installation host does not support a feature required by this package.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.RemoteRepositories.HttpFileSystemBasedFindPackageByIdResource">
+            <summary>
+            A <see cref="T:NuGet.Protocol.Core.Types.FindPackageByIdResource" /> for a Http-based file system where files are laid out in the
+            format
+            /root/
+            PackageA/
+            Version0/
+            PackageA.nuspec
+            PackageA.Version0.nupkg
+            and are accessible via HTTP Gets.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.RemoteRepositories.PackageUtilities.OpenNuspecFromNupkgAsync(System.String,System.Threading.Tasks.Task{System.IO.Stream},NuGet.Logging.ILogger)">
+            <summary>
+            Create a <see cref="T:NuGet.Packaging.NuspecReader"/> from a nupkg stream.
+            </summary>
+        </member>
+        <member name="T:NuGet.Protocol.Core.v3.RemoteRepositories.RemoteV2FindPackageByIdResourceProvider">
+            <summary>
+            A <see cref="T:NuGet.Protocol.Core.Types.ResourceProvider" /> for <see cref="T:NuGet.Protocol.Core.Types.FindPackageByIdResource" /> over v2 NuGet feeds.
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.v3.STSAuthHelper.STSEndPointHeader">
+            <summary>
+            Response header that specifies the WSTrust13 Windows Transport endpoint.
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.v3.STSAuthHelper.STSRealmHeader">
+            <summary>
+            Response header that specifies the realm to authenticate for. In most cases this would be the gallery we are going up against.
+            </summary>
+        </member>
+        <member name="F:NuGet.Protocol.Core.v3.STSAuthHelper.STSTokenHeader">
+            <summary>
+            Request header that contains the SAML token.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.STSAuthHelper.PrepareSTSRequest(System.Uri,NuGet.Configuration.CredentialStore,System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Adds the SAML token as a header to the request if it is already cached for this host.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.v3.STSAuthHelper.TryRetrieveSTSToken(System.Uri,NuGet.Configuration.CredentialStore,System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Attempts to retrieve a SAML token if the response indicates that server requires STS-based auth. 
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.FindPackageByIdDependencyInfo.#ctor(System.Collections.Generic.IEnumerable{NuGet.Packaging.PackageDependencyGroup},System.Collections.Generic.IEnumerable{NuGet.Packaging.FrameworkSpecificGroup})">
+            <summary>
+            DependencyInfo
+            </summary>
+            <param name="identity">package identity</param>
+            <param name="dependencyGroups">package dependency groups</param>
+            <param name="frameworkReferenceGroups">Sequence of <see cref="T:NuGet.Packaging.FrameworkSpecificGroup" />s.</param>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.FindPackageByIdDependencyInfo.DependencyGroups">
+            <summary>
+            Gets the package dependecy groups.
+            </summary>
+        </member>
+        <member name="P:NuGet.Protocol.Core.Types.FindPackageByIdDependencyInfo.FrameworkReferenceGroups">
+            <summary>
+            Gets the framework reference groups.
+            </summary>
+        </member>
+        <member name="M:NuGet.Protocol.Core.Types.FindPackageByIdResource.GetDependencyInfoAsync(System.String,NuGet.Versioning.NuGetVersion,System.Threading.CancellationToken)">
+            <summary>
+            Gets the <see cref="T:NuGet.Protocol.Core.Types.FindPackageByIdDependencyInfo" /> for a specific package.
+            </summary>
+            <param name="id">The packag id.</param>
+            <param name="version">The package version.</param>
+            <param name="token">The <see cref="T:System.Threading.CancellationToken" />.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task" /> that on completion returns a <see cref="T:NuGet.Protocol.Core.Types.FindPackageByIdDependencyInfo" /> of the
+            package, if found,
+            <c>null</c> otherwise.
+            </returns>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+    </members>
+</doc>

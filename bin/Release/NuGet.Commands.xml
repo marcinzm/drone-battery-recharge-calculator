@@ -1,0 +1,661 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NuGet.Commands</name>
+    </assembly>
+    <members>
+        <member name="M:NuGet.Commands.IncludeFlagUtils.GetDependencyType(NuGet.DependencyResolver.GraphNode{NuGet.DependencyResolver.RemoteResolveResult},NuGet.DependencyResolver.GraphNode{NuGet.DependencyResolver.RemoteResolveResult})">
+            <summary>
+            Find the flags for a node. 
+            Include - Exclude - ParentExclude
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.IncludeFlagUtils.OrderType(NuGet.DependencyResolver.GraphItem{NuGet.DependencyResolver.RemoteResolveResult})">
+            <summary>
+            Prefer projects over packages
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NuGet.Commands.IncludeFlagUtils.DependencyNode">
+            <summary>
+            A simple node class to hold the incoming dependency edge during the graph walk.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.IncludeFlagUtils.DependencyNode.DependencyType">
+            <summary>
+            Incoming edge
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.IncludeFlagUtils.DependencyNode.Item">
+            <summary>
+            Node item
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.LockFileUtils.ClearIfExists(System.Collections.Generic.IList{NuGet.ProjectModel.LockFileItem})">
+            <summary>
+            Clears a lock file group and replaces the first item with _._ if 
+            the group has items. Empty groups are left alone.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.LockFileUtils.GroupHasNonEmptyItems(System.Collections.Generic.IList{NuGet.ProjectModel.LockFileItem})">
+            <summary>
+            True if the group has items that do not end with _._
+            </summary>
+        </member>
+        <member name="F:NuGet.Commands.MSBuildRestoreResult.MacroCandidates">
+            <summary>
+            The macros that we may use in MSBuild to replace path roots.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.Success">
+            <summary>
+            Gets a boolean indicating if the necessary MSBuild file could be generated
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.RepositoryRoot">
+            <summary>
+            Gets the root of the repository containing packages with MSBuild files
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.Props">
+            <summary>
+            Gets a list of MSBuild props files provided by packages during this restore
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.Targets">
+            <summary>
+            Gets a list of MSBuild targets files provided by packages during this restore
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreTargetGraph.RuntimeIdentifier">
+            <summary>
+            Gets the runtime identifier used during the restore operation on this graph
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreTargetGraph.Framework">
+            <summary>
+            Gets the <see cref="T:NuGet.Frameworks.NuGetFramework" /> used during the restore operation on this graph
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreTargetGraph.Conventions">
+            <summary>
+            Gets the <see cref="T:NuGet.Client.ManagedCodeConventions" /> used to resolve assets from packages in this graph
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreTargetGraph.RuntimeGraph">
+            <summary>
+            Gets the <see cref="P:NuGet.Commands.RestoreTargetGraph.RuntimeGraph" /> that defines runtimes and their relationships for this graph
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreTargetGraph.Graphs">
+            <summary>
+            Gets the resolved dependency graph
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.Project">
+            <summary>
+            The project to perform the restore on
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.Sources">
+            <summary>
+            The complete list of sources to retrieve packages from (excluding caches)
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.PackagesDirectory">
+            <summary>
+            The directory in which to install packages
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.ExternalProjects">
+            <summary>
+            A list of projects provided by external build systems (i.e. MSBuild)
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.LockFilePath">
+            <summary>
+            The path to the lock file to read/write. If not specified, uses the file 'project.lock.json' in the same
+            directory as the provided PackageSpec.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.ExistingLockFile">
+            <summary>
+            The existing lock file to use. If not specified, the lock file will be read from the <see cref="P:NuGet.Commands.RestoreRequest.LockFilePath"/>
+            (or, if that property is not specified, from the default location of the lock file, as specified in the
+            description for <see cref="P:NuGet.Commands.RestoreRequest.LockFilePath"/>)
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.MaxDegreeOfConcurrency">
+            <summary>
+            The number of concurrent tasks to run during installs. Defaults to
+            <see cref="F:NuGet.Commands.RestoreRequest.DefaultDegreeOfConcurrency" />. Set this to '1' to
+            run without concurrency.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.CacheContext">
+            <summary>
+            Cache settings
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreRequest.CompatibilityProfiles">
+            <summary>
+            Additional compatibility profiles to check compatibility with.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreResult.LockFilePath">
+            <summary>
+            Gets the path that the lock file will be written to.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreResult.RestoreGraphs">
+            <summary>
+            Gets the resolved dependency graphs produced by the restore operation
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreResult.RelockFile">
+            <summary>
+            Gets a boolean indicating if the lock file will be re-written on <see cref="M:NuGet.Commands.RestoreResult.Commit(NuGet.Logging.ILogger)"/>
+            because the file needs to be re-locked.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreResult.LockFile">
+            <summary>
+            Gets the lock file that was generated during the restore or, in the case of a locked lock file,
+            was used to determine the packages to install during the restore.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.RestoreResult.PreviousLockFile">
+            <summary>
+            The existing lock file. This is null if no lock file was provided on the <see cref="T:NuGet.Commands.RestoreRequest"/>.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.RestoreResult.GetAllInstalled">
+            <summary>
+            Calculates the complete set of all packages installed by this operation
+            </summary>
+            <remarks>
+            This requires quite a bit of iterating over the graph so the result should be cached
+            </remarks>
+            <returns>A set of libraries that were installed by this operation</returns>
+        </member>
+        <member name="M:NuGet.Commands.RestoreResult.GetAllUnresolved">
+            <summary>
+            Calculates the complete set of all unresolved dependencies for this operation
+            </summary>
+            <remarks>
+            This requires quite a bit of iterating over the graph so the result should be cached
+            </remarks>
+            <returns>A set of dependencies that were unable to be resolved by this operation</returns>
+        </member>
+        <member name="M:NuGet.Commands.RestoreResult.Commit(NuGet.Logging.ILogger)">
+            <summary>
+            Commits the lock file contained in <see cref="P:NuGet.Commands.RestoreResult.LockFile"/> and the MSBuild targets/props to
+            the local file system.
+            </summary>
+            <remarks>If <see cref="P:NuGet.Commands.RestoreResult.PreviousLockFile"/> and <see cref="P:NuGet.Commands.RestoreResult.LockFile"/> are identical
+             the file will not be written to disk.</remarks>
+        </member>
+        <member name="M:NuGet.Commands.RestoreResult.Commit(NuGet.Logging.ILogger,System.Boolean)">
+            <summary>
+            Commits the lock file contained in <see cref="P:NuGet.Commands.RestoreResult.LockFile"/> and the MSBuild targets/props to
+            the local file system.
+            </summary>
+            <remarks>If <see cref="P:NuGet.Commands.RestoreResult.PreviousLockFile"/> and <see cref="P:NuGet.Commands.RestoreResult.LockFile"/> are identical
+             the file will not be written to disk.</remarks>
+            <param name="forceWrite">Write out the lock file even if no changes exist.</param>
+        </member>
+        <member name="M:NuGet.Commands.ContentFileUtils.GetBuildActionOrNull(System.String)">
+            <summary>
+            Normalizes build action casing and validates the action string.
+            Returns null if the action is an unknown string.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.ContentFileUtils.BuildActionList">
+            <summary>
+            Build action white list used for nuspec data.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.ContentFileUtils.GetContentGroupsForFramework(NuGet.ProjectModel.LockFileTargetLibrary,NuGet.Frameworks.NuGetFramework,System.Collections.Generic.IEnumerable{NuGet.ContentModel.ContentItemGroup})">
+            <summary>
+            Get all content groups that have the nearest TxM
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.ContentFileUtils.GetContentFileGroup(NuGet.Frameworks.NuGetFramework,NuGet.Packaging.NuspecReader,System.Collections.Generic.List{NuGet.ContentModel.ContentItemGroup})">
+            <summary>
+            Apply build actions from the nuspec to items from the contentFiles folder.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.ContentFileUtils.CreateEmptyItem">
+            <summary>
+            Create an empty lock file item for any/any
+            </summary>
+        </member>
+        <member name="T:NuGet.Commands.VirtualFileProvider">
+            <summary>
+            A virtual file system based on a list of strings from ContentModel.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_CheckingCompatibility">
+            <summary>
+            Checking compatibility of packages on {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_CheckingCompatibility(System.Object)">
+            <summary>
+            Checking compatibility of packages on {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_CheckingPackageCompatibility">
+            <summary>
+            Checking compatibility for {0} {1} with {2}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_CheckingPackageCompatibility(System.Object,System.Object,System.Object)">
+            <summary>
+            Checking compatibility for {0} {1} with {2}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_FailedToResolveConflicts">
+            <summary>
+            Failed to resolve conflicts for {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_FailedToResolveConflicts(System.Object)">
+            <summary>
+            Failed to resolve conflicts for {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_GeneratingMsBuildFile">
+            <summary>
+            Generating MSBuild file {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_GeneratingMsBuildFile(System.Object)">
+            <summary>
+            Generating MSBuild file {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_InstallingPackage">
+            <summary>
+            Installing {0} {1}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_InstallingPackage(System.Object,System.Object)">
+            <summary>
+            Installing {0} {1}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_MergingRuntimes">
+            <summary>
+            Merging in runtimes defined in {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_MergingRuntimes(System.Object)">
+            <summary>
+            Merging in runtimes defined in {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_MissingImplementationFx">
+            <summary>
+            {0} {1} provides a compile-time reference assembly for {2} on {3}, but there is no compatible run-time assembly.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_MissingImplementationFx(System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            {0} {1} provides a compile-time reference assembly for {2} on {3}, but there is no compatible run-time assembly.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_MissingImplementationFxRuntime">
+            <summary>
+            {0} {1} provides a compile-time reference assembly for {2} on {3}, but there is no run-time assembly compatible with {4}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_MissingImplementationFxRuntime(System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            {0} {1} provides a compile-time reference assembly for {2} on {3}, but there is no run-time assembly compatible with {4}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_PackageNotCompatibleWithFx">
+            <summary>
+            {0} {1} is not compatible with {2}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_PackageNotCompatibleWithFx(System.Object,System.Object,System.Object)">
+            <summary>
+            {0} {1} is not compatible with {2}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_PackagesAreCompatible">
+            <summary>
+            All packages are compatible with {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_PackagesAreCompatible(System.Object)">
+            <summary>
+            All packages are compatible with {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_PackagesIncompatible">
+            <summary>
+            Some packages are not compatible with {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_PackagesIncompatible(System.Object)">
+            <summary>
+            Some packages are not compatible with {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_ProjectDoesNotSpecifyTargetFrameworks(System.Object,System.Object)">
+            <summary>
+            The project does not specify any target frameworks.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_ResolvingConflicts">
+            <summary>
+            Resolving conflicts for {0}...
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_ResolvingConflicts(System.Object)">
+            <summary>
+            Resolving conflicts for {0}...
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_RestoringPackages">
+            <summary>
+            Restoring packages for {0}...
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_RestoringPackages(System.Object)">
+            <summary>
+            Restoring packages for {0}...
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_RestoringPackagesForCompat">
+            <summary>
+            Restoring packages for {0} to determine compatibility...
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_RestoringPackagesForCompat(System.Object)">
+            <summary>
+            Restoring packages for {0} to determine compatibility...
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_ScanningForRuntimeJson">
+            <summary>
+            Scanning packages for runtime.json files...
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_ScanningForRuntimeJson">
+            <summary>
+            Scanning packages for runtime.json files...
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_SkippingRuntimeWalk">
+            <summary>
+            Skipping runtime dependency walk, no runtimes defined in project.json.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_SkippingRuntimeWalk">
+            <summary>
+            Skipping runtime dependency walk, no runtimes defined in project.json.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_UnresolvedDependency">
+            <summary>
+            Unable to resolve {0} {1} for {2}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_UnresolvedDependency(System.Object,System.Object,System.Object)">
+            <summary>
+            Unable to resolve {0} {1} for {2}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_UnknownCompatibilityProfile">
+            <summary>
+            Unknown Compatibility Profile: {0}
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_UnknownCompatibilityProfile(System.Object)">
+            <summary>
+            Unknown Compatibility Profile: {0}
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_UsingSource">
+            <summary>
+            Using source {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_UsingSource(System.Object)">
+            <summary>
+            Using source {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.MSBuildWarning_MultiTarget">
+            <summary>
+            Packages containing MSBuild targets and props files cannot be fully installed in projects targeting multiple frameworks. The MSBuild targets and props files have been ignored.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatMSBuildWarning_MultiTarget">
+            <summary>
+            Packages containing MSBuild targets and props files cannot be fully installed in projects targeting multiple frameworks. The MSBuild targets and props files have been ignored.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_ResolverConflict">
+            <summary>
+            Unable to satisfy conflicting requests for '{0}': {1}
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_ResolverConflict(System.Object,System.Object)">
+            <summary>
+            Unable to satisfy conflicting requests for '{0}': {1}
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.ResolverRequest_ToStringFormat">
+            <summary>
+            {0} (via {1})
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatResolverRequest_ToStringFormat(System.Object,System.Object)">
+            <summary>
+            {0} (via {1})
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_LockFileMissingLibraryForTargetLibrary">
+            <summary>
+            {0} {1} is specified in the Lock File target for {2} but is not present in the top-level Libraries list.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_LockFileMissingLibraryForTargetLibrary(System.Object,System.Object,System.Object)">
+            <summary>
+            {0} {1} is specified in the Lock File target for {2} but is not present in the top-level Libraries list.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_LockFileOutOfDate">
+            <summary>
+            The lock file is out-of-date relative to the project file. Regenerating the lock file and re-locking.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_LockFileOutOfDate">
+            <summary>
+            The lock file is out-of-date relative to the project file. Regenerating the lock file and re-locking.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_DependencyBumpedUp">
+            <summary>
+            Dependency specified was {0} {1} but ended up with {2} {3}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_DependencyBumpedUp(System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Dependency specified was {0} {1} but ended up with {2} {3}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_ImportsFallbackWarning">
+            <summary>
+            Package '{0}' was restored using '{1}' instead the project target framework '{2}'. This may cause compatibility problems.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_ImportsFallbackWarning(System.Object,System.Object,System.Object)">
+            <summary>
+            Package '{0}' was restored using '{1}' instead the project target framework '{2}'. This may cause compatibility problems.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_CycleDetected">
+            <summary>
+            Cycle detected:
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_CycleDetected">
+            <summary>
+            Cycle detected:
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_DowngradeWarning">
+            <summary>
+            Detected package downgrade: {0} from {1} to {2}
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_DowngradeWarning(System.Object,System.Object,System.Object)">
+            <summary>
+            Detected package downgrade: {0} from {1} to {2}
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Log_VersionConflict">
+            <summary>
+            Version conflict detected for {0}.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatLog_VersionConflict(System.Object)">
+            <summary>
+            Version conflict detected for {0}.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.Strings.Error_UnknownBuildAction">
+            <summary>
+            Package '{0}' specifies an invalid build action '{1}' for file '{2}'.
+            </summary>
+        </member>
+        <member name="M:NuGet.Commands.Strings.FormatError_UnknownBuildAction(System.Object,System.Object,System.Object)">
+            <summary>
+            Package '{0}' specifies an invalid build action '{1}' for file '{2}'.
+            </summary>
+        </member>
+        <member name="T:NuGet.Common.HashCodeCombiner">
+            <summary>
+            Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+            </summary>
+        </member>
+        <member name="M:NuGet.Common.HashCodeCombiner.GetHashCode(System.Object[])">
+            <summary>
+            Create a unique hash code for the given set of items
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.Primitives.IChangeToken">
+            <summary>
+            Propagates notifications that a change has occured.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.IChangeToken.HasChanged">
+            <summary>
+            Gets a value that indicates if a change has occured.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Primitives.IChangeToken.ActiveChangeCallbacks">
+            <summary>
+            Indicates if this token will pro-actively raise callbacks. Callbacks are still guaranteed to fire, eventually.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback(System.Action{System.Object},System.Object)">
+            <summary>
+            Registers for a callback that will be invoked when the entry has changed.
+            <see cref="P:Microsoft.Extensions.Primitives.IChangeToken.HasChanged"/> MUST be set before the callback is invoked.
+            </summary>
+            <param name="callback">The <see cref="T:System.Action`1"/> to invoke.</param>
+            <param name="state">State to be passed into the callback.</param>
+            <returns>An <see cref="T:System.IDisposable"/> that is used to unregister the callback.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.FileProviders.IDirectoryContents">
+            <summary>
+            Represents a directory's content in the file provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.FileProviders.IDirectoryContents.Exists">
+            <summary>
+            True if a directory was located at the given path.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.FileProviders.IFileInfo">
+            <summary>
+            Represents a file in the given file provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.FileProviders.IFileInfo.Exists">
+            <summary>
+            True if resource exists in the underlying storage system.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.FileProviders.IFileInfo.Length">
+            <summary>
+            The length of the file in bytes, or -1 for a directory or non-existing files.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.FileProviders.IFileInfo.PhysicalPath">
+            <summary>
+            The path to the file, including the file name. Return null if the file is not directly accessible.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.FileProviders.IFileInfo.Name">
+            <summary>
+            The name of the file or directory, not including any path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.FileProviders.IFileInfo.LastModified">
+            <summary>
+            When the file was last modified
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.FileProviders.IFileInfo.IsDirectory">
+            <summary>
+            True for the case TryGetDirectoryContents has enumerated a sub-directory
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.FileProviders.IFileInfo.CreateReadStream">
+            <summary>
+            Return file contents as readonly stream. Caller should dispose stream when complete.
+            </summary>
+            <returns>The file stream</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.FileProviders.IFileProvider">
+            <summary>
+            A read-only file provider abstraction.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.FileProviders.IFileProvider.GetFileInfo(System.String)">
+            <summary>
+            Locate a file at the given path.
+            </summary>
+            <param name="subpath">Relative path that identifies the file.</param>
+            <returns>The file information. Caller must check Exists property.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.FileProviders.IFileProvider.GetDirectoryContents(System.String)">
+            <summary>
+            Enumerate a directory at the given path, if any.
+            </summary>
+            <param name="subpath">Relative path that identifies the directory.</param>
+            <returns>Returns the contents of the directory.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.FileProviders.IFileProvider.Watch(System.String)">
+            <summary>
+            Creates a <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> for the specified <paramref name="filter"/>.
+            </summary>
+            <param name="filter">Filter string used to determine what files or folders to monitor. Example: **/*.cs, *.*, subFolder/**/*.cshtml.</param>
+            <returns>An <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> that is notified when a file matching <paramref name="filter"/> is added, modified or deleted.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.FileProviders.NotFoundFileInfo">
+            <summary>
+            Represents a non-existing file.
+            </summary>
+        </member>
+    </members>
+</doc>
