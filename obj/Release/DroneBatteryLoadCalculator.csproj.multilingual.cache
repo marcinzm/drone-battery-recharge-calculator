@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ArrayOfCacheFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CacheFile>
+    <FileName>Form1.resx</FileName>
+    <Checksum>78181145581490168663715116258314316248</Checksum>
+    <ModifiedTime>2016-11-26T16:23:38.7397731</ModifiedTime>
+    <CacheFileType>NeutralResource</CacheFileType>
+    <WarningMessage />
+  </CacheFile>
+  <CacheFile>
+    <FileName>Properties\Resources.resx</FileName>
+    <Checksum>157712713713956901722614310713215446215179</Checksum>
+    <ModifiedTime>2016-11-26T12:55:54.3193537</ModifiedTime>
+    <CacheFileType>NeutralResource</CacheFileType>
+    <WarningMessage />
+  </CacheFile>
+  <CacheFile>
+    <FileName>MultilingualResources\DroneBatteryLoadCalculator.en.xlf</FileName>
+    <Checksum>28254552521219021696521673924414719827191</Checksum>
+    <ModifiedTime>2016-12-10T21:48:35.0216641+01:00</ModifiedTime>
+    <CacheFileType>XliffResource</CacheFileType>
+    <WarningMessage>
+      <string>1 resource strings with existing translations were updated and applied to the XLIFF file.  The related translations are unchanged, but should be checked to ensure they are still valid for the updated source string.</string>
+    </WarningMessage>
+  </CacheFile>
+  <CacheFile>
+    <FileName>Form1.en.resx</FileName>
+    <Checksum>19525178173832441949178108532091416317160</Checksum>
+    <ModifiedTime>2016-12-10T21:48:35.0756825+01:00</ModifiedTime>
+    <CacheFileType>LanguageResource</CacheFileType>
+    <WarningMessage />
+  </CacheFile>
+  <CacheFile>
+    <FileName>Properties\Resources.en.resx</FileName>
+    <Checksum>1436012517017815623114789424919510516915213</Checksum>
+    <ModifiedTime>2016-12-10T21:48:35.0791843+01:00</ModifiedTime>
+    <CacheFileType>LanguageResource</CacheFileType>
+    <WarningMessage />
+  </CacheFile>
+</ArrayOfCacheFile>
